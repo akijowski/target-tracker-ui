@@ -11,24 +11,23 @@ defineProps<{
 </script>
 
 <template>
-  <TabView scrollable>
-    <TabPanel
-      v-for="product in products"
-      :key="product.tcin"
-      :header="product.name"
+  <div>
+    <div :class="styles.sectionTitle">Currently Available</div>
+    <TabView
+      scrollable
+      class="px-3 py-3 mb-3 border-300 border-1 border-dashed border-round"
     >
-      <div :class="styles.productPanel">
-        <div :class="styles.productPanelHeader">
-          <p>Desired: {{ product.desired_quantity }}</p>
-        </div>
-        <div class="card">
-          <div
-            class="flex flex-wrap justify-content-center card-container blue-container gap-3"
-          >
+      <TabPanel
+        v-for="product in products"
+        :key="product.tcin"
+        :header="product.name"
+      >
+        <div :class="styles.productPanel">
+          <div class="flex flex-wrap flex-row gap-3 justify-content-evenly">
             <div
               v-for="store in product.result?.stores"
               :key="store.location_name"
-              class="border-round w-12rem h-6rem bg-blue-300 text-white font-bold flex flex-column flex-initial align-items-center justify-content-center"
+              class="flex flex-grow-1 justify-content-center px-3 py-3 m-2 bg-blue-500 text-white border-round shadow-3"
             >
               <div>
                 {{ store.location_name }} has {{ store.available }} available
@@ -36,7 +35,7 @@ defineProps<{
             </div>
           </div>
         </div>
-      </div>
-    </TabPanel>
-  </TabView>
+      </TabPanel>
+    </TabView>
+  </div>
 </template>

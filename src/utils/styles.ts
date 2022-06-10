@@ -1,4 +1,12 @@
 export const styles = {
+  footer: ["mt-3", "md:py-3", "bg-bluegray-100", "border-round", "opacity-80"],
+  footerButton: [
+    "p-button-rounded",
+    "p-button-link",
+    "p-button-lg",
+    "text-bluegray-600",
+    "text-sm",
+  ],
   header: [
     "flex-auto",
     "flex",
@@ -14,22 +22,23 @@ export const styles = {
   mobileBar: [
     "flex",
     "justify-content-center",
-    "bg-yellow-500 border-round text-white font-bold px-5 py-3 mx-2 mb-2",
+    "bg-yellow-500 border-round text-white font-bold px-5 py-3 mb-2",
   ],
   notificationBar: [
     "flex-auto",
     "flex",
     "align-items-center",
     "justify-content-center",
-    "bg-blue-500",
+    "bg-blue-700",
     "font-bold",
     "text-white",
-    "m-2",
+    "my-2",
     "px-5",
     "py-3",
     "border-round",
   ],
   productPanel: ["flex", "flex-column", "justify-content-start"],
   productPanelHeader: ["flex", "flex-row", "justify-content-evenly"],
+  sectionTitle: ["mt-3", "px-3", "pt-3", "font-bold", "text-lg"],
   timeIcon: ["pi", "pi-clock", "mr-2"],
 };

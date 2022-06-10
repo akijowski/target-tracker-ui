@@ -6,6 +6,7 @@ import { styles } from "@/utils/styles";
 import { formatTimeRelativeToNow } from "@/utils/time";
 
 import AppHeader from "@/components/AppHeader.vue";
+import AppFooter from "@/components/AppFooter.vue";
 import StatChart from "@/components/StatChart.vue";
 import ProductPanel from "@/components/ProductPanel.vue";
 import MobileBar from "@/components/MobileBar.vue";
@@ -33,12 +34,16 @@ const updatedTimeFriendly = computed(() => {
         <MobileBar />
         <MobileStats :stats="stats" />
       </div>
-      <div class="hidden md:block mx-2">
+      <div class="hidden md:block">
         <ProductPanel :products="stats.products" />
         <StatChart />
       </div>
     </div>
   </main>
+
+  <footer>
+    <AppFooter />
+  </footer>
 </template>
 
 <style>

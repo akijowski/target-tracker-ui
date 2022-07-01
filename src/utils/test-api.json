@@ -1,0 +1,101 @@
+{
+    "created_at": 1654106360,
+    "last_updated_at": 1654711160,
+    "products": [
+        {
+            "name": "Up&Up Sensitive Baby Formula",
+            "desired_quantity": 1,
+            "tcin": "70000046",
+            "product_url": "https://www.target.com/p/gentle-non-gmo-powder-infant-formula-up-up/-/A-82052064",
+            "result": {
+                "stores": [
+                    {
+                        "available": 1,
+                        "location_name": "Denver"
+                    },
+                    {
+                        "available": 2,
+                        "location_name": "Aurora"
+                    }
+                ],
+                "total_stores": 2
+            }
+        },
+        {
+            "name": "Enfamil NeuroPro Gentlease",
+            "desired_quantity": 1,
+            "tcin": "79334027",
+            "product_url": "https://www.target.com/p/gentle-non-gmo-powder-infant-formula-up-up/-/A-82052064",
+            "result": {
+                "stores": [
+                    {
+                        "available": 1,
+                        "location_name": "Denver"
+                    }
+                ],
+                "total_stores": 1
+            }
+        }
+    ],
+    "history": [
+        {
+            "product_name": "Up&Up Gentle Baby Formula",
+            "data": [
+                {
+                    "time": 1654472160,
+                    "count": 1
+                },
+                {
+                    "time": 1654538360,
+                    "count": 0
+                },
+                {
+                    "time": 1654624760,
+                    "count": 1
+                },
+                {
+                    "time": 1654711160,
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "product_name": "Up&Up Sensitive Baby Formula",
+            "data": [
+                {
+                    "time": 1654472160,
+                    "count": 1
+                },
+                {
+                    "time": 1654538360,
+                    "count": 1
+                },
+                {
+                    "time": 1654624760,
+                    "count": 1
+                },
+                {
+                    "time": 1654711160,
+                    "count": 0
+                }
+            ]
+        },
+        {
+            "product_name": "Up&Up Baby Formula",
+            "data": [
+                {
+                    "time": 1654472160,
+                    "count": 1
+                },
+                {
+                    "time": 1654538360,
+                    "count": 2
+                },
+                {
+                    "time": 1654624760,
+                    "count": 2
+                }
+            ]
+        }
+    ]
+}

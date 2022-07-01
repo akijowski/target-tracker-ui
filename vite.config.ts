@@ -8,7 +8,13 @@ import strip from "@rollup/plugin-strip";
 // https://vitejs.dev/config/
 export default defineConfig({
   base:
-    process.env.NODE_ENV === "production" ? `/${process.env.REPO_NAME}/` : "/",
+    ((): string => {
+      if (process.env.NODE_ENV === "production" && process.env.REPO_NAME !== undefined) {
+        return `/${process.env.REPO_NAME}/`
+      } else {
+        return "/"
+      }
+    })(),
   plugins: [
     vue(),
     vueJsx(),

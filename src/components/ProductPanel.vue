@@ -4,10 +4,18 @@ import TabPanel from "primevue/tabpanel";
 
 import type { APIProduct } from "@/utils/api";
 import { styles } from "@/utils/styles";
+import { computed } from "vue";
 
-defineProps<{
+const props = defineProps<{
   products: APIProduct[];
 }>();
+
+const availableProducts = computed(() => {
+  return props.products.filter(p => {
+    const total = p.result === undefined ? 0 : p.result?.total_stores
+    return total > 0
+  })
+})
 </script>
 
 <template>
@@ -18,7 +26,7 @@ defineProps<{
       class="px-3 py-3 mb-3 border-300 border-1 border-dashed border-round"
     >
       <TabPanel
-        v-for="product in products"
+        v-for="product in availableProducts"
         :key="product.tcin"
         :header="product.name"
       >

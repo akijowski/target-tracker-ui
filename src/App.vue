@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
+import type {Ref} from "vue";
+import {useFetch} from "@vueuse/core";
 
 import { getStats } from "@/utils/api";
+import type { APIStatsResponse } from "@/utils/api";
 import { styles } from "@/utils/styles";
 import { formatTimeRelativeToNow } from "@/utils/time";
 
@@ -12,21 +15,26 @@ import ProductPanel from "@/components/ProductPanel.vue";
 import MobileBar from "@/components/MobileBar.vue";
 import MobileStats from "@/components/MobileStats.vue";
 
-const stats = getStats();
-
+const {data, error, isFetching} = useFetch<APIStatsResponse>(`${import.meta.env.VITE_STATS_API_URL}/historical_stats.json`).json()
+const stats = data as Ref<APIStatsResponse>
 const updatedTimeFriendly = computed(() => {
-  return formatTimeRelativeToNow(stats.value.lastUpdatedAt);
+  if (stats) {
+    return formatTimeRelativeToNow(stats.value.last_updated_at);
+  }
 });
 </script>
 <template>
-  <header>
+  <header v-if="!isFetching">
     <AppHeader
-      :created-at="stats.createdAt"
-      :last-updated-at="stats.lastUpdatedAt"
+      :created-at="stats.created_at"
+      :last-updated-at="stats.last_updated_at"
     />
   </header>
   <main>
-    <div>
+    <div v-if="isFetching && !error">
+    Fetching data
+    </div>
+    <div v-else>
       <div :class="styles.notificationBar">
         Last Updated: {{ updatedTimeFriendly }}
       </div>
@@ -36,7 +44,7 @@ const updatedTimeFriendly = computed(() => {
       </div>
       <div class="hidden md:block">
         <ProductPanel :products="stats.products" />
-        <StatChart />
+        <StatChart :api-stats="stats.history" />
       </div>
     </div>
   </main>

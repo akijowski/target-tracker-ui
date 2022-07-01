@@ -7,14 +7,22 @@ import HistoryTable from "@/components/HistoryTable.vue";
 import type { APIProduct, APIStatsResponse } from "@/utils/api";
 import { historyForProduct } from "@/utils/api";
 import { styles } from "@/utils/styles";
+import { computed } from "vue";
 
-defineProps<{
+const props = defineProps<{
   stats: APIStatsResponse;
 }>();
 
 const mobileAccordionHeader = (product: APIProduct): string => {
   return `${product.name} - (${product.result?.total_stores}) stores`;
 };
+
+const availableProducts = computed(() => {
+  return props.stats.products.filter(p => {
+    const total = p.result === undefined ? 0 : p.result.total_stores
+    return total > 0
+  })
+})
 </script>
 
 <template>
@@ -22,7 +30,7 @@ const mobileAccordionHeader = (product: APIProduct): string => {
     <div :class="styles.sectionTitle">Currently Available</div>
     <Accordion>
       <AccordionTab
-        v-for="product in stats.products"
+        v-for="product in availableProducts"
         :key="product.tcin"
         :header="mobileAccordionHeader(product)"
       >

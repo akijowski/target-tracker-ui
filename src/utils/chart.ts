@@ -1,5 +1,4 @@
 import type { ChartDataset } from "chart.js";
-import { formatLabelText } from "./time";
 import type { APIStat } from "./api";
 
 const baseDataset: ChartDataset<"line", any> = {
@@ -11,20 +10,19 @@ const baseDataset: ChartDataset<"line", any> = {
 export const getChartData = (history: APIStat[]): any => {
   const datasets = history.map((h) => {
     const data = h.data.map((v) => {
+      // Requires time data to be in Epoch millis
       return {
-        x: formatLabelText(v.time),
+        x: v.time * 1000,
         y: v.count,
       };
     });
     return {
       ...baseDataset,
-      label: h.productName,
+      label: h.product_name,
       data,
     };
   });
-  const labels = history[0].data.map((v) => formatLabelText(v.time));
   return {
-    labels,
     datasets,
   };
 };

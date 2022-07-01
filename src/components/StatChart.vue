@@ -1,19 +1,35 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 // @ts-ignore
 import autocolors from "chartjs-plugin-autocolors";
+import 'chartjs-adapter-date-fns';
 import Chart from "primevue/chart";
 
-import { getStats } from "@/utils/api";
+import type { APIStat} from "@/utils/api"
 import { getChartData } from "@/utils/chart";
 import { styles } from "@/utils/styles";
 
-const stats = getStats();
+const props = defineProps<{
+  apiStats: APIStat[]
+}>()
 
-const chartData = getChartData(stats.value.history);
+const chartData = computed(() => {
+  return getChartData(props.apiStats)
+})
 
 const chartOptions = ref({
   scales: {
+    x: {
+      type: 'time',
+      time: {
+        unit: 'day',
+        round: true
+      },
+      title: {
+        display: true,
+        text: "Date"
+      }
+    },
     y: {
       min: 0,
       suggestedMax: 3,
@@ -29,6 +45,7 @@ const chartOptions = ref({
 <template>
   <div>
     <div :class="styles.sectionTitle">Historical Data</div>
+    <div><span class="font-light vertical-align-super">*</span>Total Available is for all available stores on that day</div>
     <Chart
       type="line"
       :data="chartData"

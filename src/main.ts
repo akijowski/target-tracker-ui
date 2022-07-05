@@ -1,3 +1,4 @@
+/* eslint-disable vue/multi-word-component-names */
 // import devtools from "@vue/devtools";
 import { createApp } from "vue";
 import PrimeVue from "primevue/config";

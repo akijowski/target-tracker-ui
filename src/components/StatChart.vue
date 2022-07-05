@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-// @ts-ignore
 import autocolors from "chartjs-plugin-autocolors";
 import "chartjs-adapter-date-fns";
 import Chart from "primevue/chart";
@@ -35,7 +34,7 @@ const chartOptions = ref({
       suggestedMax: 3,
       title: {
         display: true,
-        text: "Total Available",
+        text: "Total Stores",
       },
     },
   },

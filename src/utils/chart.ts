@@ -1,12 +1,14 @@
 import type { ChartDataset } from "chart.js";
 import type { APIStat } from "./api";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const baseDataset: ChartDataset<"line", any> = {
   data: [],
   fill: false,
   tension: 0.4,
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getChartData = (history: APIStat[]): any => {
   const datasets = history.map((h) => {
     const data = h.data.map((v) => {

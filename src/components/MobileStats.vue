@@ -18,11 +18,11 @@ const mobileAccordionHeader = (product: APIProduct): string => {
 };
 
 const availableProducts = computed(() => {
-  return props.stats.products.filter(p => {
-    const total = p.result === undefined ? 0 : p.result.total_stores
-    return total > 0
-  })
-})
+  return props.stats.products.filter((p) => {
+    const total = p.result === undefined ? 0 : p.result.total_stores;
+    return total > 0;
+  });
+});
 </script>
 
 <template>

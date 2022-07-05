@@ -11,12 +11,12 @@ defineProps<{
 </script>
 
 <template>
-  <DataTable :value="history" responsiveLayout="scroll" stripedRows>
-    <Column field="time" header="Time">
+  <DataTable :value="history" stripedRows scrollable scrollHeight="350px">
+    <Column field="time" header="Time" :sortable="true">
       <template #body="slotProps">
         {{ formatLabelText(slotProps.data.time) }}
       </template>
     </Column>
-    <Column field="count" header="Count"></Column>
+    <Column field="count" header="Total Stores"></Column>
   </DataTable>
 </template>

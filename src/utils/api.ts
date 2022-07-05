@@ -1,8 +1,7 @@
 import type { Ref } from "vue";
 import { ref } from "vue";
-import {useFetch} from "@vueuse/core"
 
-import staticData from "./test-api.json"
+import staticData from "./test-api.json";
 
 export interface APIStatsResponse {
   created_at: number;
@@ -40,7 +39,7 @@ export interface APIStore {
 }
 
 export const getStats = (): Ref<APIStatsResponse> => {
-    return ref(staticData);
+  return ref(staticData);
 };
 
 export const historyForProduct = (

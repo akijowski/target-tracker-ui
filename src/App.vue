@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-import type {Ref} from "vue";
-import {useFetch} from "@vueuse/core";
+import { computed } from "vue";
+import type { Ref } from "vue";
+import { useFetch } from "@vueuse/core";
 
 import { getStats } from "@/utils/api";
 import type { APIStatsResponse } from "@/utils/api";
@@ -15,11 +15,24 @@ import ProductPanel from "@/components/ProductPanel.vue";
 import MobileBar from "@/components/MobileBar.vue";
 import MobileStats from "@/components/MobileStats.vue";
 
-const {data, error, isFetching} = useFetch<APIStatsResponse>(`${import.meta.env.VITE_STATS_API_URL}/historical_stats.json`).json()
-const stats = data as Ref<APIStatsResponse>
+const url = `${import.meta.env.VITE_STATS_API_URL}/historical_stats.json`;
+const { data, error, isFetching } = useFetch<APIStatsResponse>(url).json();
+let stats: Ref<APIStatsResponse>;
+if (import.meta.env.DEV) {
+  stats = getStats();
+  error.value = undefined;
+  isFetching.value = false;
+} else {
+  stats = data as Ref<APIStatsResponse>;
+}
+if (error.value) {
+  console.error(error);
+}
 const updatedTimeFriendly = computed(() => {
   if (stats) {
     return formatTimeRelativeToNow(stats.value.last_updated_at);
+  } else {
+    return "";
   }
 });
 </script>
@@ -31,9 +44,7 @@ const updatedTimeFriendly = computed(() => {
     />
   </header>
   <main>
-    <div v-if="isFetching && !error">
-    Fetching data
-    </div>
+    <div v-if="isFetching && !error">Fetching data</div>
     <div v-else>
       <div :class="styles.notificationBar">
         Last Updated: {{ updatedTimeFriendly }}

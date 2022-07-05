@@ -9,8 +9,8 @@ https://akijowski.github.io/target-tracker-ui/
 
 The following is a list of outstanding items
 
-- [ ] Add dynamic stats data (remove the static temp data)
-- [ ] Refine the StatChart
-- [ ] Refine the mobile views
+- [x] Add dynamic stats data (remove the static temp data)
+- [x] Refine the StatChart
+- [x] Refine the mobile views
 - [ ] General clean up and refactoring
 - [ ] Tests

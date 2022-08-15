@@ -14,12 +14,12 @@ const props = defineProps<{
 }>();
 
 const mobileAccordionHeader = (product: APIProduct): string => {
-  return `${product.name} - (${product.result?.total_stores}) stores`;
+  return `${product.name} - (${product.result?.pickup.total_stores}) stores`;
 };
 
 const availableProducts = computed(() => {
   return props.stats.products.filter((p) => {
-    const total = p.result === undefined ? 0 : p.result.total_stores;
+    const total = p.result === undefined ? 0 : p.result.pickup.total_stores;
     return total > 0;
   });
 });
@@ -34,7 +34,7 @@ const availableProducts = computed(() => {
         :key="product.tcin"
         :header="mobileAccordionHeader(product)"
       >
-        <div v-for="store in product.result?.stores" :key="store.location_name">
+        <div v-for="store in product.result?.pickup.stores" :key="store.location_name">
           <p>{{ store.location_name }}: {{ store.available }} available</p>
         </div>
         <HistoryTable

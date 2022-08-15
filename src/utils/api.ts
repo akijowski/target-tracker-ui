@@ -29,8 +29,18 @@ export interface APIProduct {
 }
 
 export interface APIResult {
+  pickup: APIPickupResult;
+  delivery: APIDeliveryResult;
+}
+
+export interface APIPickupResult {
   stores: APIStore[];
   total_stores: number;
+}
+
+export interface APIDeliveryResult {
+  available_to_promise: number;
+  is_available: boolean;
 }
 
 export interface APIStore {

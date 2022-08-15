@@ -12,7 +12,7 @@ const props = defineProps<{
 
 const availableProducts = computed(() => {
   return props.products.filter((p) => {
-    const total = p.result === undefined ? 0 : p.result?.total_stores;
+    const total = p.result === undefined ? 0 : p.result?.pickup.total_stores;
     return total > 0;
   });
 });
@@ -33,7 +33,7 @@ const availableProducts = computed(() => {
         <div :class="styles.productPanel">
           <div class="flex flex-wrap flex-row gap-3 justify-content-evenly">
             <div
-              v-for="store in product.result?.stores"
+              v-for="store in product.result?.pickup.stores"
               :key="store.location_name"
               class="flex flex-grow-1 justify-content-center px-3 py-3 m-2 bg-blue-500 text-white border-round shadow-3"
             >
